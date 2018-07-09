@@ -1,0 +1,20 @@
+#countries .row {
+  border: 1px solid black;
+}
+
+#countries .row p {
+  padding: 5px;
+  margin: 0;
+}
+
+#countries .row:nth-child(2n) {
+  background-color: #eaeaea;
+}
+
+#countries .col-md-3 {
+ border-right: 1px solid black;
+}
+
+#countries .col-md-3:last-of-type {
+ border-right: 0px solid black;
+}

@@ -11,6 +11,7 @@ namespace WorldData.Models
       private string _continent;
       private int _population;
       private double _lifeExpect;
+      private static bool _sortOrder = false;
 
       public Country(string countryName, string continent, int population, double lifeExpectancy)
       {
@@ -40,7 +41,15 @@ namespace WorldData.Models
         return _lifeExpect;
       }
 
-      //...GETTERS AND SETTERS WILL GO HERE...
+      public static void FlipSortOrder()
+      {
+         _sortOrder = !_sortOrder;
+      }
+
+      public static bool GetSortOrder()
+      {
+        return _sortOrder;
+      }
 
       public static List<Country> GetAll()
       {
@@ -55,7 +64,7 @@ namespace WorldData.Models
           string countryName = rdr.GetString(1);
           string continent = rdr.GetString(2);
           int population = rdr.GetInt32(6);
-          double lifeExpectancy = rdr.GetDouble(7);
+          double lifeExpectancy =  Math.Round(rdr.GetDouble(7), 2);
 
           Country newCountry = new Country(countryName, continent, population, lifeExpectancy);
           allCountries.Add(newCountry);
@@ -66,6 +75,44 @@ namespace WorldData.Models
             conn.Dispose();
         }
         return allCountries;
-      }
+        }
+
+
+        public static List<Country> SortBy(string category, bool sortOrder)
+        {
+          List<Country> allCountries = new List<Country> {};
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+          Console.WriteLine(category);
+          Console.WriteLine(sortOrder);
+          if (sortOrder)
+          {
+          cmd.CommandText = @"SELECT * FROM country ORDER BY " + category + " ASC";
+          Console.WriteLine("if " + cmd.CommandText);
+          }
+          else
+          {
+          cmd.CommandText = @"SELECT * FROM country ORDER BY " + category + " DESC";
+          Console.WriteLine("else " + cmd.CommandText);
+          }
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+          while(rdr.Read())
+          {
+            string countryName = rdr.GetString(1);
+            string continent = rdr.GetString(2);
+            int population = rdr.GetInt32(6);
+            double lifeExpectancy =  Math.Round(rdr.GetDouble(7), 2);
+
+            Country newCountry = new Country(countryName, continent, population, lifeExpectancy);
+            allCountries.Add(newCountry);
+          }
+          conn.Close();
+          if (conn != null)
+          {
+              conn.Dispose();
+          }
+          return allCountries;
+          }
    }
 }

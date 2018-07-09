@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using using WorldData.Models;
+using WorldData.Models;
+using System.Collections.Generic;
 
 namespace WorldData.Controllers
 {
@@ -8,7 +9,8 @@ namespace WorldData.Controllers
         [HttpGet("/")]
         public ActionResult Index()
         {
-            return View();
+            List<Country> allCountries = Country.GetAll();
+            return View(allCountries);
         }
     }
 }

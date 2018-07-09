@@ -7,45 +7,65 @@ namespace WorldData.Models
 {
     public class Country
     {
-      private int _id;
       private string _name;
       private string _continent;
       private int _population;
-      private int _lifeExpect;
+      private double _lifeExpect;
 
-      public Country(int Id = 0, string Name, string Continent, int Population, int LifeExpectancy )
+      public Country(string countryName, string continent, int population, double lifeExpectancy)
       {
-        _id = Id;
-        _name = Name;
-        _continent = Continent;
-        _population =  Population;
-        _lifeExpect =  LifeExpectancy;
+        _name = countryName;
+        _continent = continent;
+        _population =  population;
+        _lifeExpect =  lifeExpectancy;
+      }
 
+      public string GetName()
+      {
+        return _name;
+      }
+
+      public string GetContinent()
+      {
+        return _continent;
+      }
+
+      public int GetPopulation()
+      {
+        return _population;
+      }
+
+      public double GetLifeExpecancy()
+      {
+        return _lifeExpect;
       }
 
       //...GETTERS AND SETTERS WILL GO HERE...
 
-          public static List<Country> GetAll()
-          {
-              List<Country> allCountries = new List<Country> {};
-              MySqlConnection conn = DB.Connection();
-              conn.Open();
-              MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-              cmd.CommandText = @"SELECT * FROM items;";
-              MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-              while(rdr.Read())
-              {
-                int itemId = rdr.GetInt32(0);
-                string itemDescription = rdr.GetString(1);
-                Country newCountry = new Country(itemDescription, itemId);
-                allCountries.Add(newCountry);
-              }
-              conn.Close();
-              if (conn != null)
-              {
-                  conn.Dispose();
-              }
-              return allCountries;
-          }
-    }
+      public static List<Country> GetAll()
+      {
+        List<Country> allCountries = new List<Country> {};
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT * FROM country";
+        MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+          string countryName = rdr.GetString(1);
+          string continent = rdr.GetString(2);
+          int population = rdr.GetInt32(6);
+          double lifeExpectancy = rdr.GetDouble(7);
+
+          Country newCountry = new Country(countryName, continent, population, lifeExpectancy);
+          allCountries.Add(newCountry);
+        }
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+        return allCountries;
+      }
+   }
 }

@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+
+  <div class='container'>
+    <div class = "row" id="header">
+      <div class="col-md-8">
+        <p>Click on header to sort alphabetically by column (Asc, Desc):</p>
+      </div>
+      <div class="col-md-4">
+        <a href="/">Back to HOME</a>
+      </div>
+    </div>
+    <div id="cities">
+      <div class = "row">
+          <div class = "col-md-4">
+            <h3><a href="/city/name">City Name</a></h3>
+          </div>
+          <div class = "col-md-4">
+            <h3><a href="/city/district">District</a></h3>
+          </div>
+          <div class = "col-md-4">
+            <h3><a href="/city/population">Population</a></h3>
+          </div>
+      </div>
+
+    @foreach (var city in Model)
+    { <div class = "row">
+        <div class = "col-md-4">
+          <p>@city.GetName()</p>
+        </div>
+        <div class = "col-md-4">
+          <p>@city.GetDistrict()</p>
+        </div>
+        <div class = "col-md-4">
+          <p>@city.GetPopulation()</p>
+        </div>
+      </div>
+    }
+    </div>
+  </div>

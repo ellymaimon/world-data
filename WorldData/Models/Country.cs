@@ -89,12 +89,10 @@ namespace WorldData.Models
           if (sortOrder)
           {
           cmd.CommandText = @"SELECT * FROM country ORDER BY " + category + " ASC";
-          Console.WriteLine("if " + cmd.CommandText);
           }
           else
           {
           cmd.CommandText = @"SELECT * FROM country ORDER BY " + category + " DESC";
-          Console.WriteLine("else " + cmd.CommandText);
           }
           MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
           while(rdr.Read())

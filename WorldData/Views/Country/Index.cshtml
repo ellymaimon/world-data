@@ -1,0 +1,47 @@
+@{
+  Layout = "_Layout";
+}
+
+  <div class='container'>
+    <div class = "row" id="header">
+      <div class="col-md-8">
+        <p>Click on header to sort alphabetically by column (Asc, Desc):</p>
+      </div>
+      <div class="col-md-4">
+        <a href="/">Back to HOME</a>
+      </div>
+    </div>
+    <div id="countries">
+      <div class = "row">
+          <div class = "col-md-3">
+            <h3><a href="/country/name">Country Name</a></h3>
+          </div>
+          <div class = "col-md-3">
+            <h3><a href="/country/continent">Continent</a></h3>
+          </div>
+          <div class = "col-md-3">
+            <h3><a href="/country/population">Population</a></h3>
+          </div>
+          <div class = "col-md-3">
+            <h3><a href="/country/life">Life Expectancy</a></h3>
+          </div>
+      </div>
+
+    @foreach (var country in Model)
+    { <div class = "row">
+        <div class = "col-md-3">
+          <p>@country.GetName()</p>
+        </div>
+        <div class = "col-md-3">
+          <p>@country.GetContinent()</p>
+        </div>
+        <div class = "col-md-3">
+          <p>@country.GetPopulation()</p>
+        </div>
+        <div class = "col-md-3">
+          <p>@country.GetLifeExpecancy()</p>
+        </div>
+      </div>
+    }
+    </div>
+  </div>

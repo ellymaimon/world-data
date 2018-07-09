@@ -2,38 +2,16 @@
   Layout = "_Layout";
 }
 
-  <div class='container'>
-    <div id="countries">
-      <div class = "row">
-          <div class = "col-md-3">
-            <h3><a href="/country">Country Name</a></h3>
-          </div>
-          <div class = "col-md-3">
-            <h3><a href="/continent">Continent</a></h3>
-          </div>
-          <div class = "col-md-3">
-            <h3><a href="/population">Population</a></h3>
-          </div>
-          <div class = "col-md-3">
-            <h3><a href="/life">Life Expectancy</a></h3>
-          </div>
+  <div class='container' id="splash">
+    <h1>Cities and Countries of the World</h1>
+    <img src="~/img/landscape.jpg" alt="A cityscape">
+    <div id="choices">
+      <p id="instructions">Click on either Countries or Cities to view a sortable list:</p>
+      <div class="col-md-6">
+          <a href="/country">See Countries</a>
       </div>
-
-    @foreach (var country in Model)
-    { <div class = "row">
-        <div class = "col-md-3">
-          <p>@country.GetName()</p>
-        </div>
-        <div class = "col-md-3">
-          <p>@country.GetContinent()</p>
-        </div>
-        <div class = "col-md-3">
-          <p>@country.GetPopulation()</p>
-        </div>
-        <div class = "col-md-3">
-          <p>@country.GetLifeExpecancy()</p>
-        </div>
+      <div class="col-md-6">
+        <a href="/city">See Cities</a>
       </div>
-    }
     </div>
   </div>

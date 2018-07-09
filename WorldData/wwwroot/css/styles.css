@@ -1,20 +1,58 @@
-#countries .row {
+body {
+    background-color: #fcfcff;
+}
+
+img {
+  max-width: 100%;
+}
+
+.row {
   border: 1px solid black;
 }
 
-#countries .row p {
+.row p {
   padding: 5px;
   margin: 0;
 }
 
-#countries .row:nth-child(2n) {
+.row:nth-child(2n) {
   background-color: #eaeaea;
 }
 
-#countries .col-md-3 {
+.col-md-3 {
  border-right: 1px solid black;
 }
 
-#countries .col-md-3:last-of-type {
+.col-md-3:last-of-type {
  border-right: 0px solid black;
+}
+
+.col-md-6 {
+  text-align: center;
+  font-size: 48px;
+  margin-top: 20px;
+  background: #354a83;
+  padding: 3rem;
+  border-right: 5px solid white;
+}
+
+#splash a {
+  color: white;
+}
+
+#splash a:hover {
+  text-decoration: none;
+  color: #d4c7f1;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#splash {
+  text-align: center;
+}
+
+#instructions {
+  margin-top: 2rem;
 }
